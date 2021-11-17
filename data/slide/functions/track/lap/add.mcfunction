@@ -1,0 +1,1 @@
+execute as @e[tag=GbBRllm,limit=1,sort=nearest] if score @s GbBRlam matches 0.. run scoreboard players add @s GbBRlam 1

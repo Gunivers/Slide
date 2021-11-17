@@ -1,0 +1,1 @@
+execute as @e[tag=GbBRllm,limit=1,sort=nearest] if score @s GbBRlam matches 2.. run scoreboard players remove @s GbBRlam 1
