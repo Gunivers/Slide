@@ -1,6 +1,12 @@
 tag @s add FinishLine
-execute as @s[scores={Laps=1,Time=100..}] at @s at @e[type=boat,limit=1,sort=nearest] run function slide:finish
-execute as @s[scores={Laps=2..},tag=W1,tag=W2] at @s at @e[type=boat,limit=1,sort=nearest] run scoreboard players remove @s Laps 1
+tellraw @s[tag=Lap,tag=W1,tag=W2,scores={TimeL=0..,CentiemesL=10..}] {"text":"Your time for this lap is: ","color":"blue","extra":[{"color":"aqua","bold":true,"score":{"name":"@s","objective":"SecondsL"}},{"text":"."},{"color":"aqua","bold":true,"score":{"name":"@s","objective":"CentiemesL"}},{"text":" seconds"}]}
+tellraw @s[tag=Lap,tag=W1,tag=W2,scores={TimeL=0..,CentiemesL=..9}] {"text":"Your time for this lap is: ","color":"blue","extra":[{"color":"aqua","bold":true,"score":{"name":"@s","objective":"SecondsL"}},{"text":"."},{"text":"0","color":"aqua","bold":true},{"color":"aqua","bold":true,"score":{"name":"@s","objective":"CentiemesL"}},{"text":" seconds"}]}
+
+execute as @s[scores={Laps=1,Time=100..}] at @s run function slide:track/finish
+execute as @s[scores={Laps=2..},tag=W1,tag=W2] run scoreboard players remove @s Laps 1
+execute as @s[tag=Lap,tag=W1,tag=W2] run scoreboard players set @s TimeL 0
+
+
 tag @s[tag=W1,tag=W2] add W1Temp
 tag @s[tag=W1,tag=W2] add W2Temp
 tag @s[tag=W1Temp] remove W1

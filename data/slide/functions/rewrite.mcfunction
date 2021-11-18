@@ -53,4 +53,4 @@ execute as @a[scores={Time=0..,Centiemes=10..}] run title @s actionbar ["",{"sco
 
 
 execute as @a[tag=InBoat,tag=Lap,scores={Time=500..}] at @s at @e[type=boat,limit=1,sort=nearest] unless block ~ ~-2 ~ blue_stained_glass run tag @s remove Lap
-execute as @a[tag=InBoat,tag=!Lap] at @s at @e[type=boat,limit=1,sort=nearest] if block ~ ~-2 ~ blue_stained_glass run function slide:finish
+execute as @a[tag=InBoat,tag=!Lap] at @s at @e[type=boat,limit=1,sort=nearest] if block ~ ~-2 ~ blue_stained_glass run function slide:track/finish

@@ -4,9 +4,28 @@ execute as @a[tag=InBoat,nbt=!{RootVehicle:{Entity:{id:"minecraft:boat"}}}] at @
 effect give @a[gamemode=adventure] minecraft:weakness 1 250 true
 effect give @a minecraft:resistance 1 250 true
 
-execute as @e[tag=GbBR] at @s run tag @a[distance=..10,tag=!StartLine,scores={Time=-200..0}] add StartLine
-execute as @a[tag=StartLine] at @s unless entity @e[tag=GbBR,distance=..10] run tag @s remove StartLine
+execute as @e[tag=GbBRrx+] at @s positioned ~-4.5 ~1 ~-5 run tag @a[dz=9,dy=5,dx=3,tag=!StartLineX+,scores={Time=-200..0}] add StartLineX+
+execute as @e[tag=GbBRrx-] at @s positioned ~0.5 ~1 ~-5 run tag @a[dz=9,dy=5,dx=3,tag=!StartLineX-,scores={Time=-200..0}] add StartLineX-
+execute as @e[tag=GbBRry+] at @s positioned ~-5 ~1 ~-4.5 run tag @a[dx=9,dy=5,dz=3,tag=!StartLineZ+,scores={Time=-200..0}] add StartLineZ+
+execute as @e[tag=GbBRry-] at @s positioned ~-5 ~1 ~-0.5 run tag @a[dx=9,dy=5,dz=3,tag=!StartLineZ-,scores={Time=-200..0}] add StartLineZ-
+#execute as @a[tag=StartLineX] at @s positioned ~-3 ~1 ~-3 unless entity @e[tag=GbBRrx,dz=10,dy=5,dx=4] run tag @s remove StartLineX
+##execute as @e[tag=GbBRrx] at @s positioned ~-3 ~1 ~-3 if entity @a[dz=10,dy=5,dx=4,scores={Time=-200..0}] run say sdfjh
+#execute as @a[tag=StartLineZ] at @s positioned ~-6 ~1 ~-2 unless entity @e[tag=GbBRry,dx=10,dy=5,dz=4] run tag @s remove StartLineZ
+#execute as @e[tag=GbBRrx] at @s run tag @a[distance=..10,tag=!StartLineX,scores={Time=-200..0}] add StartLineX
+#execute as @a[tag=StartLineX] at @s unless entity @e[tag=GbBRrx,distance=..10] run tag @s remove StartLineX
+#execute as @e[tag=GbBRry] at @s run tag @a[distance=..10,tag=!StartLineZ,scores={Time=-200..0}] add StartLineZ
+#execute as @a[tag=StartLineZ] at @s unless entity @e[tag=GbBRry,distance=..10] run tag @s remove StartLineZ
+tag @a[tag=StartLine,tag=!StartLineX+,tag=!StartLineX-,tag=!StartLineZ+,tag=!StartLineZ] remove StartLine
+tag @a[tag=StartLineX+] add StartLine
+tag @a[tag=StartLineX-] add StartLine
+tag @a[tag=StartLineZ+] add StartLine
+tag @a[tag=StartLineZ-] add StartLine
 tag @a[tag=StartLine,scores={Time=-100..}] remove StartLine
+tag @a[tag=StartLine,scores={Time=-100..}] remove StartLineX+
+tag @a[tag=StartLine,scores={Time=-100..}] remove StartLineX-
+tag @a[tag=StartLine,scores={Time=-100..}] remove StartLineZ+
+tag @a[tag=StartLine,scores={Time=-100..}] remove StartLineZ-
+
 execute as @a[tag=StartLine,gamemode=adventure] run item replace entity @s hotbar.0 with spruce_boat
 execute as @a[tag=StartLine,gamemode=adventure] run item replace entity @s hotbar.6 with egg{HideFlags:63,display:{Name:'{"text":"Reset"}'}}
 execute as @a[tag=StartLine,gamemode=adventure] at @s if entity @e[tag=GbBRllm,distance=..10,limit=1] run item replace entity @s hotbar.7 with egg{HideFlags:63,display:{Name:'{"text":"Lap"}',Lore:['{"text":"Throw to Increase"}','{"text":"Drop to Reduce"}']}}
@@ -23,12 +42,16 @@ execute as @a[tag=!StartLine,gamemode=adventure] run item replace entity @s hotb
 execute as @a[tag=!StartLine,gamemode=adventure] run item replace entity @s hotbar.7 with air
 execute as @a[tag=!StartLine,gamemode=adventure] run item replace entity @s hotbar.8 with air
 
-
+tag @a remove StartLineX+
+tag @a remove StartLineX-
+tag @a remove StartLineZ+
+tag @a remove StartLineZ-
 
 
 
 #execute as @a[tag=InBoat] if entity @s[scores={Time=-200}] run scoreboard players set @s Time -100
 scoreboard players add @e[scores={Time=-100..}] Time 1
+scoreboard players add @e[scores={Time=-100..}] TimeL 1
 scoreboard players set @a[tag=!InBoat] Time -200
 
 
@@ -46,9 +69,24 @@ execute as @a[scores={Time=0..}] run scoreboard players operation @s Centiemes =
 execute as @a[scores={Time=0..}] run scoreboard players operation @s Centiemes *= #5 global
 execute as @a[scores={Time=0..}] run scoreboard players operation @s Centiemes %= #100 global
 
+execute as @a[scores={TimeL=0..}] run scoreboard players operation @s SecondsL = @s TimeL
+execute as @a[scores={TimeL=0..}] run scoreboard players operation @s SecondsL /= #20 global
 
-execute as @a[scores={Time=0..,Centiemes=..9}] run title @s actionbar ["",{"score":{"name":"@s","objective":"Seconds"}},{"text":":0"},{"score":{"name":"@s","objective":"Centiemes"}}]
-execute as @a[scores={Time=0..,Centiemes=10..}] run title @s actionbar ["",{"score":{"name":"@s","objective":"Seconds"}},{"text":":"},{"score":{"name":"@s","objective":"Centiemes"}}]
+execute as @a[scores={TimeL=0..}] run scoreboard players operation @s CentiemesL = @s TimeL
+execute as @a[scores={TimeL=0..}] run scoreboard players operation @s CentiemesL *= #5 global
+execute as @a[scores={TimeL=0..}] run scoreboard players operation @s CentiemesL %= #100 global
+
+
+
+execute as @a[tag=!Lap,scores={Time=0..,Centiemes=..9}] run title @s actionbar ["",{"score":{"name":"@s","objective":"Seconds"}},{"text":":0"},{"score":{"name":"@s","objective":"Centiemes"}}]
+execute as @a[tag=!Lap,scores={Time=0..,Centiemes=10..}] run title @s actionbar ["",{"score":{"name":"@s","objective":"Seconds"}},{"text":":"},{"score":{"name":"@s","objective":"Centiemes"}}]
+
+execute as @a[tag=Lap,scores={Time=0..,Centiemes=..9,TimeL=0..,CentiemesL=..9}] run title @s actionbar ["",{"score":{"name":"@s","objective":"Seconds"}},{"text":":0"},{"score":{"name":"@s","objective":"Centiemes"}},{"text": "  |  "},{"score":{"name":"@s","objective":"SecondsL"}},{"text":":0"},{"score":{"name":"@s","objective":"CentiemesL"}}]
+execute as @a[tag=Lap,scores={Time=0..,Centiemes=10..,TimeL=0..,CentiemesL=10..}] run title @s actionbar ["",{"score":{"name":"@s","objective":"Seconds"}},{"text":":"},{"score":{"name":"@s","objective":"Centiemes"}},{"text": "  |  "},{"score":{"name":"@s","objective":"SecondsL"}},{"text":":"},{"score":{"name":"@s","objective":"CentiemesL"}}]
+
+execute as @a[tag=Lap,scores={Time=0..,Centiemes=..9,TimeL=0..,CentiemesL=10..}] run title @s actionbar ["",{"score":{"name":"@s","objective":"Seconds"}},{"text":":0"},{"score":{"name":"@s","objective":"Centiemes"}},{"text": "  |  "},{"score":{"name":"@s","objective":"SecondsL"}},{"text":":"},{"score":{"name":"@s","objective":"CentiemesL"}}]
+execute as @a[tag=Lap,scores={Time=0..,Centiemes=10..,TimeL=0..,CentiemesL=..9}] run title @s actionbar ["",{"score":{"name":"@s","objective":"Seconds"}},{"text":":"},{"score":{"name":"@s","objective":"Centiemes"}},{"text": "  |  "},{"score":{"name":"@s","objective":"SecondsL"}},{"text":":0"},{"score":{"name":"@s","objective":"CentiemesL"}}]
+
 
 
 #execute as @a[tag=InBoat,tag=Lap,scores={Time=500..}] at @s at @e[type=boat,limit=1,sort=nearest] unless block ~ ~-2 ~ blue_stained_glass run tag @s remove Lap
@@ -60,7 +98,7 @@ execute as @a[tag=W2,tag=InBoat,tag=InTrack] at @s at @e[type=boat,limit=1,sort=
 execute as @a[tag=!W2,tag=InBoat,tag=InTrack] at @s at @e[type=boat,limit=1,sort=nearest] if block ~ ~-2 ~ cyan_stained_glass run tag @s add W2
 
 
-#execute as @a[tag=InBoat,tag=InTrack,scores={Laps=1}] at @s at @e[type=boat,limit=1,sort=nearest] if block ~ ~-2 ~ blue_stained_glass run function slide:finish
+#execute as @a[tag=InBoat,tag=InTrack,scores={Laps=1}] at @s at @e[type=boat,limit=1,sort=nearest] if block ~ ~-2 ~ blue_stained_glass run function slide:track/finish
 
 execute as @a[scores={egg=1..}] at @s run kill @e[type=egg,limit=1,sort=nearest]
 execute as @a[scores={egg=1..}] at @s if entity @s[nbt={SelectedItemSlot:6}] run function slide:track/reset
@@ -85,6 +123,5 @@ execute unless entity @a[tag=Tr3,tag=InTrack] as @e[tag=GbBR,tag=Tr3,scores={Tim
 execute unless entity @a[tag=Tr4,tag=InTrack] as @e[tag=GbBR,tag=Tr4,scores={Time=-100..}] at @s run function slide:track/finish_track
 execute unless entity @a[tag=Tr5,tag=InTrack] as @e[tag=GbBR,tag=Tr5,scores={Time=-100..}] at @s run function slide:track/finish_track
 execute unless entity @a[tag=Tr6,tag=InTrack] as @e[tag=GbBR,tag=Tr6,scores={Time=-100..}] at @s run function slide:track/finish_track
-execute unless entity @a[tag=Tr7,tag=InTrack] as @e[tag=GbBR,tag=Tr7,scores={Time=-100..}] at @s run function slide:track/finish_track
 
 data merge block 1003 41 1059 {Text1:'{"text":"==========="}',Text2:'{"score":{"name":"@e[tag=GbBR,tag=Tr4]","objective":"Time"}}'}
