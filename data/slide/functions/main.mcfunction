@@ -4,27 +4,11 @@ execute as @a[tag=InBoat,nbt=!{RootVehicle:{Entity:{id:"minecraft:boat"}}}] at @
 effect give @a[gamemode=adventure] minecraft:weakness 1 250 true
 effect give @a minecraft:resistance 1 250 true
 
-execute as @e[tag=GbBRrx+] at @s positioned ~-4.5 ~1 ~-5 run tag @a[dz=9,dy=5,dx=3,tag=!StartLineX+,scores={Time=-200..0}] add StartLineX+
-execute as @e[tag=GbBRrx-] at @s positioned ~0.5 ~1 ~-5 run tag @a[dz=9,dy=5,dx=3,tag=!StartLineX-,scores={Time=-200..0}] add StartLineX-
-execute as @e[tag=GbBRry+] at @s positioned ~-5 ~1 ~-4.5 run tag @a[dx=9,dy=5,dz=3,tag=!StartLineZ+,scores={Time=-200..0}] add StartLineZ+
-execute as @e[tag=GbBRry-] at @s positioned ~-5 ~1 ~-0.5 run tag @a[dx=9,dy=5,dz=3,tag=!StartLineZ-,scores={Time=-200..0}] add StartLineZ-
-#execute as @a[tag=StartLineX] at @s positioned ~-3 ~1 ~-3 unless entity @e[tag=GbBRrx,dz=10,dy=5,dx=4] run tag @s remove StartLineX
-##execute as @e[tag=GbBRrx] at @s positioned ~-3 ~1 ~-3 if entity @a[dz=10,dy=5,dx=4,scores={Time=-200..0}] run say sdfjh
-#execute as @a[tag=StartLineZ] at @s positioned ~-6 ~1 ~-2 unless entity @e[tag=GbBRry,dx=10,dy=5,dz=4] run tag @s remove StartLineZ
-#execute as @e[tag=GbBRrx] at @s run tag @a[distance=..10,tag=!StartLineX,scores={Time=-200..0}] add StartLineX
-#execute as @a[tag=StartLineX] at @s unless entity @e[tag=GbBRrx,distance=..10] run tag @s remove StartLineX
-#execute as @e[tag=GbBRry] at @s run tag @a[distance=..10,tag=!StartLineZ,scores={Time=-200..0}] add StartLineZ
-#execute as @a[tag=StartLineZ] at @s unless entity @e[tag=GbBRry,distance=..10] run tag @s remove StartLineZ
-tag @a[tag=StartLine,tag=!StartLineX+,tag=!StartLineX-,tag=!StartLineZ+,tag=!StartLineZ] remove StartLine
-tag @a[tag=StartLineX+] add StartLine
-tag @a[tag=StartLineX-] add StartLine
-tag @a[tag=StartLineZ+] add StartLine
-tag @a[tag=StartLineZ-] add StartLine
-tag @a[tag=StartLine,scores={Time=-100..}] remove StartLine
-tag @a[tag=StartLine,scores={Time=-100..}] remove StartLineX+
-tag @a[tag=StartLine,scores={Time=-100..}] remove StartLineX-
-tag @a[tag=StartLine,scores={Time=-100..}] remove StartLineZ+
-tag @a[tag=StartLine,scores={Time=-100..}] remove StartLineZ-
+tag @a remove StartLine
+execute as @e[tag=GbBRrx+,scores={Time=-200..0}] at @s positioned ~-4.5 ~1 ~-5 run tag @a[dz=9,dy=5,dx=3] add StartLine
+execute as @e[tag=GbBRrx-,scores={Time=-200..0}] at @s positioned ~0.5 ~1 ~-5 run tag @a[dz=9,dy=5,dx=3] add StartLine
+execute as @e[tag=GbBRry+,scores={Time=-200..0}] at @s positioned ~-5 ~1 ~-4.5 run tag @a[dx=9,dy=5,dz=3] add StartLine
+execute as @e[tag=GbBRry-,scores={Time=-200..0}] at @s positioned ~-5 ~1 ~-0.5 run tag @a[dx=9,dy=5,dz=3] add StartLine
 
 execute as @a[tag=StartLine,gamemode=adventure] run item replace entity @s hotbar.0 with spruce_boat
 execute as @a[tag=StartLine,gamemode=adventure] run item replace entity @s hotbar.6 with egg{HideFlags:63,display:{Name:'{"text":"Reset"}'}}
@@ -41,13 +25,6 @@ execute as @a[gamemode=adventure] run item replace entity @s hotbar.5 with air
 execute as @a[tag=!StartLine,gamemode=adventure] run item replace entity @s hotbar.6 with air
 execute as @a[tag=!StartLine,gamemode=adventure] run item replace entity @s hotbar.7 with air
 execute as @a[tag=!StartLine,gamemode=adventure] run item replace entity @s hotbar.8 with air
-
-tag @a remove StartLineX+
-tag @a remove StartLineX-
-tag @a remove StartLineZ+
-tag @a remove StartLineZ-
-
-
 
 #execute as @a[tag=InBoat] if entity @s[scores={Time=-200}] run scoreboard players set @s Time -100
 scoreboard players add @e[scores={Time=-100..}] Time 1

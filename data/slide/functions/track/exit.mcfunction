@@ -7,3 +7,5 @@ tag @s[tag=!GbBR] remove Tr6
 
 tag @s[tag=!GbBR] remove InTrack
 tag @s remove Lap
+tag @s remove W1
+tag @s remove W2

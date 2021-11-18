@@ -12,7 +12,6 @@ execute if entity @s[tag=Tr3] run tag @a[tag=InTrackTemp] add Tr3
 execute if entity @s[tag=Tr4] run tag @a[tag=InTrackTemp] add Tr4
 execute if entity @s[tag=Tr5] run tag @a[tag=InTrackTemp] add Tr5
 execute if entity @s[tag=Tr6] run tag @a[tag=InTrackTemp] add Tr6
-execute if entity @s[tag=Tr7] run tag @a[tag=InTrackTemp] add Tr7
 
 scoreboard players operation @a[tag=InTrackTemp] Laps = @s GbBRlam
 #scoreboard players add @a[tag=InTrackTemp,distance=..10,scores={Laps=2..}] Laps 1 
