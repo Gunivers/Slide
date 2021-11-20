@@ -1,3 +1,4 @@
+tag @s add Highscore
 scoreboard players operation @e[tag=GbBR,tag=Tr1,limit=1] Highscore = @s[tag=Tr1] TimeL
 scoreboard players operation @e[tag=GbBR,tag=Tr2,limit=1] Highscore = @s[tag=Tr2] TimeL
 scoreboard players operation @e[tag=GbBR,tag=Tr3,limit=1] Highscore = @s[tag=Tr3] TimeL
@@ -5,9 +6,10 @@ scoreboard players operation @e[tag=GbBR,tag=Tr4,limit=1] Highscore = @s[tag=Tr4
 scoreboard players operation @e[tag=GbBR,tag=Tr5,limit=1] Highscore = @s[tag=Tr5] TimeL
 scoreboard players operation @e[tag=GbBR,tag=Tr6,limit=1] Highscore = @s[tag=Tr6] TimeL
 
+scoreboard players operation @s BestTrackTime = @s TimeL
+
 tellraw @s {"text":"New Highscore !","color":"blue", "bold": true}
 
-tag @s add Highscore
 
 #{GlowingText: 0b, Color: "black", x: 998, Text4: '{"text":"*----*---*----*"}', y: 42, Text3: '{"text":""}', z: 1051, Text2: '{"color":"aqua","text":"No one"}', id: "minecraft:sign", Text1: '{"text":"*- Highscore -*"}'}
 

@@ -6,6 +6,7 @@ execute if entity @s[tag=Lap,tag=W1,tag=W2] run function slide:track/highscore/t
 
 execute as @s[scores={Laps=1,Time=100..}] at @s run function slide:track/finish
 execute as @s[scores={Laps=2..},tag=W1,tag=W2] run scoreboard players remove @s Laps 1
+execute as @s[tag=W1,tag=W2] run scoreboard players add @s LapsIn 1
 execute as @s[tag=Lap,tag=W1,tag=W2] run scoreboard players set @s TimeL 0
 
 

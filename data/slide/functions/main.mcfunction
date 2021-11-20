@@ -5,10 +5,10 @@ effect give @a[gamemode=adventure] minecraft:weakness 1 250 true
 effect give @a minecraft:resistance 1 250 true
 
 tag @a remove StartLine
-execute as @e[tag=GbBRrx+,scores={Time=-200..0}] at @s positioned ~-4.5 ~1 ~-5 run tag @a[dz=9,dy=5,dx=3] add StartLine
-execute as @e[tag=GbBRrx-,scores={Time=-200..0}] at @s positioned ~0.5 ~1 ~-5 run tag @a[dz=9,dy=5,dx=3] add StartLine
-execute as @e[tag=GbBRry+,scores={Time=-200..0}] at @s positioned ~-5 ~1 ~-4.5 run tag @a[dx=9,dy=5,dz=3] add StartLine
-execute as @e[tag=GbBRry-,scores={Time=-200..0}] at @s positioned ~-5 ~1 ~-0.5 run tag @a[dx=9,dy=5,dz=3] add StartLine
+execute as @e[tag=GbBRrx+,scores={Time=-200..0}] at @s positioned ~-4.5 ~1 ~-5 run tag @a[tag=!InTrack,dz=9,dy=5,dx=3,gamemode=adventure] add StartLine
+execute as @e[tag=GbBRrx-,scores={Time=-200..0}] at @s positioned ~0.5 ~1 ~-5 run tag @a[tag=!InTrack,dz=9,dy=5,dx=3,gamemode=adventure] add StartLine
+execute as @e[tag=GbBRry+,scores={Time=-200..0}] at @s positioned ~-5 ~1 ~-4.5 run tag @a[tag=!InTrack,dx=9,dy=5,dz=3,gamemode=adventure] add StartLine
+execute as @e[tag=GbBRry-,scores={Time=-200..0}] at @s positioned ~-5 ~1 ~-0.5 run tag @a[tag=!InTrack,dx=9,dy=5,dz=3,gamemode=adventure] add StartLine
 
 execute as @a[tag=StartLine,gamemode=adventure] run item replace entity @s hotbar.0 with spruce_boat
 execute as @a[tag=StartLine,gamemode=adventure] run item replace entity @s hotbar.6 with egg{HideFlags:63,display:{Name:'{"text":"Reset"}'}}
@@ -53,18 +53,7 @@ execute as @a[scores={TimeL=0..}] run scoreboard players operation @s CentiemesL
 execute as @a[scores={TimeL=0..}] run scoreboard players operation @s CentiemesL *= #5 global
 execute as @a[scores={TimeL=0..}] run scoreboard players operation @s CentiemesL %= #100 global
 
-
-
-execute as @a[tag=!Lap,scores={Time=0..,Centiemes=..9}] run title @s actionbar ["",{"score":{"name":"@s","objective":"Seconds"}},{"text":":0"},{"score":{"name":"@s","objective":"Centiemes"}}]
-execute as @a[tag=!Lap,scores={Time=0..,Centiemes=10..}] run title @s actionbar ["",{"score":{"name":"@s","objective":"Seconds"}},{"text":":"},{"score":{"name":"@s","objective":"Centiemes"}}]
-
-execute as @a[tag=Lap,scores={Time=0..,Centiemes=..9,TimeL=0..,CentiemesL=..9}] run title @s actionbar ["",{"score":{"name":"@s","objective":"Seconds"}},{"text":":0"},{"score":{"name":"@s","objective":"Centiemes"}},{"text": "  |  "},{"score":{"name":"@s","objective":"SecondsL"}},{"text":":0"},{"score":{"name":"@s","objective":"CentiemesL"}}]
-execute as @a[tag=Lap,scores={Time=0..,Centiemes=10..,TimeL=0..,CentiemesL=10..}] run title @s actionbar ["",{"score":{"name":"@s","objective":"Seconds"}},{"text":":"},{"score":{"name":"@s","objective":"Centiemes"}},{"text": "  |  "},{"score":{"name":"@s","objective":"SecondsL"}},{"text":":"},{"score":{"name":"@s","objective":"CentiemesL"}}]
-
-execute as @a[tag=Lap,scores={Time=0..,Centiemes=..9,TimeL=0..,CentiemesL=10..}] run title @s actionbar ["",{"score":{"name":"@s","objective":"Seconds"}},{"text":":0"},{"score":{"name":"@s","objective":"Centiemes"}},{"text": "  |  "},{"score":{"name":"@s","objective":"SecondsL"}},{"text":":"},{"score":{"name":"@s","objective":"CentiemesL"}}]
-execute as @a[tag=Lap,scores={Time=0..,Centiemes=10..,TimeL=0..,CentiemesL=..9}] run title @s actionbar ["",{"score":{"name":"@s","objective":"Seconds"}},{"text":":"},{"score":{"name":"@s","objective":"Centiemes"}},{"text": "  |  "},{"score":{"name":"@s","objective":"SecondsL"}},{"text":":0"},{"score":{"name":"@s","objective":"CentiemesL"}}]
-
-
+function slide:track/timer
 
 #execute as @a[tag=InBoat,tag=Lap,scores={Time=500..}] at @s at @e[type=boat,limit=1,sort=nearest] unless block ~ ~-2 ~ blue_stained_glass run tag @s remove Lap
 execute as @a[tag=!FinishLine,tag=InBoat,tag=InTrack] at @s at @e[type=boat,limit=1,sort=nearest] if block ~ ~-2 ~ blue_stained_glass run function slide:track/finish_line
@@ -74,12 +63,15 @@ execute as @a[tag=!W1,tag=InBoat,tag=InTrack] at @s at @e[type=boat,limit=1,sort
 execute as @a[tag=W2,tag=InBoat,tag=InTrack] at @s at @e[type=boat,limit=1,sort=nearest] if block ~ ~-2 ~ light_blue_stained_glass run tag @s remove W2
 execute as @a[tag=!W2,tag=InBoat,tag=InTrack] at @s at @e[type=boat,limit=1,sort=nearest] if block ~ ~-2 ~ cyan_stained_glass run tag @s add W2
 
+tag @a remove BestLapTime
+execute as @a[tag=InTrack,scores={BestTrackTime=1..}] if score @s TimeL <= @s BestTrackTime run tag @s add BestLapTime
+execute as @a[tag=InTrack] unless score @s BestTrackTime matches 1.. run tag @s add BestLapTime
 
 #execute as @a[tag=InBoat,tag=InTrack,scores={Laps=1}] at @s at @e[type=boat,limit=1,sort=nearest] if block ~ ~-2 ~ blue_stained_glass run function slide:track/finish
 
 execute as @a[scores={egg=1..}] at @s run kill @e[type=egg,limit=1,sort=nearest]
 execute as @a[scores={egg=1..}] at @s if entity @s[nbt={SelectedItemSlot:6}] run function slide:track/reset
-execute as @a[nbt={SelectedItemSlot:7},tag=StartLine] at @s if entity @e[tag=GbBRllm,distance=..10] run title @s actionbar ["",{"score":{"name":"@e[tag=GbBRllm,limit=1,sort=nearest]","objective":"GbBRlam"}},{"text": " tour(s)"}]
+execute as @a[nbt={SelectedItemSlot:7},tag=StartLine] at @s if entity @e[tag=GbBRllm,distance=..10] run title @s actionbar ["",{"score":{"name":"@e[tag=GbBRllm,limit=1,sort=nearest]","objective":"GbBRlam"}},{"text": " Lap•s"}]
 execute as @a[scores={egg=1..}] at @s if entity @s[nbt={SelectedItemSlot:7}] run function slide:track/lap/add
 execute as @a[scores={egg=1..}] at @s if entity @s[nbt={SelectedItemSlot:8}] run function slide:track/start
 execute as @a[scores={egg=1..}] run scoreboard players set @s egg 0
@@ -100,5 +92,7 @@ execute unless entity @a[tag=Tr3,tag=InTrack] as @e[tag=GbBR,tag=Tr3,scores={Tim
 execute unless entity @a[tag=Tr4,tag=InTrack] as @e[tag=GbBR,tag=Tr4,scores={Time=-100..}] at @s run function slide:track/finish_track
 execute unless entity @a[tag=Tr5,tag=InTrack] as @e[tag=GbBR,tag=Tr5,scores={Time=-100..}] at @s run function slide:track/finish_track
 execute unless entity @a[tag=Tr6,tag=InTrack] as @e[tag=GbBR,tag=Tr6,scores={Time=-100..}] at @s run function slide:track/finish_track
+
+execute as @a at @s if block ~ ~ ~ water run teleport @s 999.5 39.5 1024.5 90 0
 
 data merge block 1003 41 1059 {Text1:'{"text":"==========="}',Text2:'{"score":{"name":"@e[tag=GbBR,tag=Tr4]","objective":"Time"}}'}
