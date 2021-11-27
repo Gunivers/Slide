@@ -1,9 +1,4 @@
-tag @s[tag=!GbBR] remove Tr1
-tag @s[tag=!GbBR] remove Tr2
-tag @s[tag=!GbBR] remove Tr3
-tag @s[tag=!GbBR] remove Tr4
-tag @s[tag=!GbBR] remove Tr5
-tag @s[tag=!GbBR] remove Tr6
+scoreboard players set @s[tag=!GbBR] Track 0
 
 tag @s[tag=!GbBR] remove InTrack
 tag @s remove Lap

@@ -8,12 +8,13 @@ execute as @e[tag=GbBRry-] at @s positioned ~-5 ~1 ~1.1 run tag @a[dx=9,dy=5,dz=
 scoreboard players set @a[tag=InTrackTemp] Time -100
 scoreboard players set @s Time -100
 scoreboard players set @a[tag=InTrackTemp] TimeL -100
-execute if entity @s[tag=Tr1] run tag @a[tag=InTrackTemp] add Tr1
-execute if entity @s[tag=Tr2] run tag @a[tag=InTrackTemp] add Tr2
-execute if entity @s[tag=Tr3] run tag @a[tag=InTrackTemp] add Tr3
-execute if entity @s[tag=Tr4] run tag @a[tag=InTrackTemp] add Tr4
-execute if entity @s[tag=Tr5] run tag @a[tag=InTrackTemp] add Tr5
-execute if entity @s[tag=Tr6] run tag @a[tag=InTrackTemp] add Tr6
+
+execute if entity @s[tag=Tr1] run scoreboard players set @a[tag=InTrackTemp] Track 1
+execute if entity @s[tag=Tr2] run scoreboard players set @a[tag=InTrackTemp] Track 2
+execute if entity @s[tag=Tr3] run scoreboard players set @a[tag=InTrackTemp] Track 3
+execute if entity @s[tag=Tr4] run scoreboard players set @a[tag=InTrackTemp] Track 4
+execute if entity @s[tag=Tr5] run scoreboard players set @a[tag=InTrackTemp] Track 5
+execute if entity @s[tag=Tr6] run scoreboard players set @a[tag=InTrackTemp] Track 6
 
 scoreboard players operation @a[tag=InTrackTemp] Laps = @s GbBRlam
 scoreboard players operation @a[tag=InTrackTemp] MaxLaps = @s GbBRlam
