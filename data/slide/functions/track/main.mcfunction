@@ -69,6 +69,7 @@ execute as @a[tag=FinishLine] at @s at @e[type=boat,limit=1,sort=nearest] unless
 execute as @a[tag=!W1,tag=InBoat,tag=InTrack] at @s at @e[type=boat,limit=1,sort=nearest] if block ~ ~-2 ~ light_blue_stained_glass run tag @s add W1
 execute as @a[tag=W2,tag=InBoat,tag=InTrack] at @s at @e[type=boat,limit=1,sort=nearest] if block ~ ~-2 ~ light_blue_stained_glass run tag @s remove W2
 execute as @a[tag=!W2,tag=InBoat,tag=InTrack] at @s at @e[type=boat,limit=1,sort=nearest] if block ~ ~-2 ~ cyan_stained_glass run tag @s add W2
+execute as @a[tag=!W2,tag=InBoat,tag=InTrack] at @s at @e[type=boat,limit=1,sort=nearest] run particle glow ~ ~ ~ 0 0 0 0 1
 
 tag @a remove BestLapTime
 execute as @a[tag=InTrack,scores={BestTrackTime=1..}] if score @s TimeL <= @s BestTrackTime run tag @s add BestLapTime

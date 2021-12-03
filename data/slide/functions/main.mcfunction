@@ -21,10 +21,10 @@ function slide:track/main
 #training room
 execute positioned 1006 52 880 if entity @p[distance=..20,tag=!InBoat] unless entity @e[type=boat,distance=..5] run summon boat ~ ~ ~ {Type:"spruce",Tags:[Persistent,Training],Rotation:[180.0f,0.0f]}
 
-execute as @e[tag=tp] at @s run particle minecraft:glow ^ ^ ^0.4 0 0 0 0 1 force
-execute as @e[tag=tp] at @s run teleport @s ~ ~ ~ ~20 ~
-execute as @e[tag=tp] at @s positioned ~-0.5 ~-3 ~-0.5 as @a[dx=0,dy=2,dz=0] at @s run teleport @s ~ ~-0.2 ~
-execute as @e[tag=tp] at @s positioned ~ ~ ~ as @a[distance=..0.3] at @s run teleport @s ~ ~-0.5 ~
+execute as @e[tag=tp] at @s[tag=!InBoat,tag=!InTrack] run particle minecraft:glow ^ ^ ^0.4 0 0 0 0 1 force
+execute as @e[tag=tp] at @s[tag=!InBoat,tag=!InTrack] run teleport @s ~ ~ ~ ~20 ~
+execute as @e[tag=tp] at @s[tag=!InBoat,tag=!InTrack] positioned ~-0.5 ~-3 ~-0.5 as @a[dx=0,dy=2,dz=0] at @s run teleport @s ~ ~-0.2 ~
+execute as @e[tag=tp] at @s[tag=!InBoat,tag=!InTrack] positioned ~ ~ ~ as @a[distance=..0.3] at @s run teleport @s ~ ~-0.5 ~
 #execute as @e[tag=tp] at @s positioned ~ ~-2 ~ run effect give @a[distance=..1] minecraft:levitation 1 2 true
 execute as @e[tag=tp,tag=Tr1] at @s positioned ~ ~-2 ~ run teleport @a[distance=..0.5] 995 33 1010 180 18
 execute as @e[tag=tp,tag=Tr2] at @s positioned ~ ~-2 ~ run teleport @a[distance=..0.5] 977 32 1012 90 0
