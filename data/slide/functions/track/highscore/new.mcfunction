@@ -6,11 +6,16 @@ scoreboard players operation @e[tag=GbBR,tag=Tr4,limit=1] Highscore = @s[scores=
 scoreboard players operation @e[tag=GbBR,tag=Tr5,limit=1] Highscore = @s[scores={Track=5}] TimeL
 scoreboard players operation @e[tag=GbBR,tag=Tr6,limit=1] Highscore = @s[scores={Track=6}] TimeL
 
-scoreboard players operation @s BestTrackTime = @s TimeL
+scoreboard players operation @a[scores={Track=1}] BestTrackTime = @s[scores={Track=1}] TimeL
+scoreboard players operation @a[scores={Track=2}] BestTrackTime = @s[scores={Track=2}] TimeL
+scoreboard players operation @a[scores={Track=3}] BestTrackTime = @s[scores={Track=3}] TimeL
+scoreboard players operation @a[scores={Track=4}] BestTrackTime = @s[scores={Track=4}] TimeL
+scoreboard players operation @a[scores={Track=5}] BestTrackTime = @s[scores={Track=5}] TimeL
+scoreboard players operation @a[scores={Track=6}] BestTrackTime = @s[scores={Track=6}] TimeL
 
 tellraw @s {"text":"New Highscore !","color":"blue", "bold": true}
 execute at @s run summon firework_rocket ~ ~1.5 ~ {LifeTime:15,FireworksItem:{id:"minecraft:firework_rocket",Count:1,tag:{Fireworks:{Explosions:[{Type:0,Colors:[I;393207],FadeColors:[I;16777215]}]}}}}
-tellraw @a[tag=!Highscore] {"text":"New Highscore on track","color":"blue","extra":[{"score":{"name":"@a[tag=Highscore,limit=1]","objective":"Track"}},{"text":" : "},{"color":"aqua","bold":true,"score":{"name":"@a[tag=Highscore,limit=1]","objective":"SecondsL"}},{"text":"."},{"color":"aqua","bold":true,"score":{"name":"@a[tag=Highscore,limit=1,scores={Centiemes=..9}]","objective":"global"}},{"color":"aqua","bold":true,"score":{"name":"@a[tag=Highscore,limit=1]","objective":"CentiemesL"}},{"text":"s by "},{"selector":"@a[tag=Highscore,limit=1]"}]}
+tellraw @a[tag=!Highscore] {"text":"New Highscore on track ","color":"blue","extra":[{"score":{"name":"@a[tag=Highscore,limit=1]","objective":"Track"}},{"text":" : "},{"color":"aqua","bold":true,"score":{"name":"@a[tag=Highscore,limit=1]","objective":"SecondsL"}},{"text":"."},{"color":"aqua","bold":true,"score":{"name":"@a[tag=Highscore,limit=1,scores={Centiemes=..9}]","objective":"global"}},{"color":"aqua","bold":true,"score":{"name":"@a[tag=Highscore,limit=1]","objective":"CentiemesL"}},{"text":"s by "},{"selector":"@a[tag=Highscore,limit=1]"}]}
 
 
 

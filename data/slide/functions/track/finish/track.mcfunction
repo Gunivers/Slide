@@ -5,4 +5,4 @@ function slide:track/exit
 
 function slide:track/reset
 
-execute as @e[tag=GbBR,scores={Time=-200}] at @s run function slide:track/reset
+execute as @s[tag=GbBR,scores={Time=-200}] at @s run function slide:track/reset
