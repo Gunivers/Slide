@@ -34,6 +34,8 @@ gamerule spawnRadius 0
 gamerule spectatorsGenerateChunks false
 gamerule universalAnger false
 
+difficulty normal
+
 weather clear
 
 forceload add 64 66 60 61
@@ -52,6 +54,7 @@ scoreboard players set #0 global 0
 
 scoreboard objectives add Respawn trigger
 scoreboard objectives add Training trigger
+scoreboard objectives add EditMode trigger
 
 scoreboard objectives add Track dummy
 
@@ -81,6 +84,7 @@ scoreboard objectives add Highscore dummy
 scoreboard objectives add egg minecraft.used:minecraft.egg
 scoreboard objectives add drop_door minecraft.dropped:minecraft.oak_door
 scoreboard objectives add egg_drop minecraft.dropped:minecraft.egg
+scoreboard objectives add tnt minecraft.used:minecraft.tnt
 scoreboard players set @e[tag=GbBR] Time -200
 
 scoreboard objectives add BestTr1 dummy
@@ -90,6 +94,8 @@ scoreboard objectives add BestTr4 dummy
 scoreboard objectives add BestTr5 dummy
 scoreboard objectives add BestTr6 dummy
 
+team add Holo
+team modify Holo color aqua
 
 tag @e[tag=Tr1] add GbBRrx-
 tag @e[tag=Tr2] add GbBRrx-
@@ -113,9 +119,20 @@ data merge block 1006 53 889 {Text1:'{"text":"*----*---*----*","clickEvent":{"ac
 data merge block 1006 53 891 {Text1:'{"text":"*----*---*----*","clickEvent":{"action":"run_command","value":"trigger Training"}}'}
 data merge block 1007 38 1035 {Text1:'{"text":"*----*---*----*","clickEvent":{"action":"run_command","value":"trigger Training"}}'}
 
+data merge block 1001 40 999 {Text1:'{"text":"*----*---*----*"}',Text2:'{"text":""}',Text3:'{"text":""}',Text4:'{"text":"*----*---*----*"}'}
+data merge block 1001 40 1001 {Text1:'{"text":"*----*---*----*"}',Text2:'{"text":""}',Text3:'{"text":""}',Text4:'{"text":"*----*---*----*"}'}
+data merge block 1001 39 1001 {Text1:'{"text":"*----*---*----*"}',Text2:'{"text":""}',Text3:'{"text":""}',Text4:'{"text":"*----*---*----*"}'}
+data merge block 1001 39 999 {Text1:'{"text":"*----*---*----*"}',Text2:'{"text":""}',Text3:'{"text":""}',Text4:'{"text":"*----*---*----*"}'}
+data merge block 1001 39 1000 {Text1:'{"text":"*----*---*----*","clickEvent":{"action":"run_command","value":"trigger EditMode"}}',Text2: '{"bold":true,"color":"white","text":"Edit"}',Text3: '{"bold":true,"color":"white","text":"the track"}',Text4:'{"text":"*----*---*----*"}'}
+
+
 kill @e[tag=tp]
 summon marker 998 4 1129 {Tags:["tp","Tr4"]}
 summon marker 1066 4 1098 {Tags:["tp","Tr3"]}
 summon marker 1063 7 938 {Tags:["tp","Tr2"]}
 summon marker 1014 19.5 1007 {Tags:["tp","Tr1"]}
 summon marker 1006 52 889 {Tags:["tp","Training"]}
+
+setblock 993 27 1019 minecraft:player_wall_head[facing=east]{SkullOwner:{Name:"Theaustudio",Id:"458b2654-52fc-2d47-2806-88b7ae49d127",Properties:{textures:[{Value:"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDU4YjI2NTQ1MmZjMmQ0NzI4MDY4OGI3YWU0OWQxMjcwZDE1MGIwZTE1ZWY2NjNiNzhkMDVmNTQ0ODZlOGIyZiJ9fX0="}]}}}
+setblock 993 26 1019 oak_wall_sign[facing=east]{Text1:'{"text":"*----*---*----*"}',Text2:'{"text":"Theaustudio"}',Text3:'{"text":"Datapack V1.5"}',Text4:'{"text":"*----*---*----*"}'}
+setblock 1007 29 1018 oak_wall_sign[facing=east]{Text1:'{"text":"Tu veux pas"}',Text2:'{"text":"m\'aider à projet"}',Text3:'{"text":"alpha plutot ?"}',Text4:'{"text":"- Laizo"}'}

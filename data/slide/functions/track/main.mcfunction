@@ -77,15 +77,15 @@ execute as @a[tag=InTrack] unless score @s BestTrackTime matches 1.. run tag @s 
 
 #execute as @a[tag=InBoat,tag=InTrack,scores={Laps=1}] at @s at @e[type=boat,limit=1,sort=nearest] if block ~ ~-2 ~ blue_stained_glass run function slide:track/finish/finish
 
-execute as @a[scores={egg=1..}] at @s run kill @e[type=egg,limit=1,sort=nearest]
-execute as @a[scores={egg=1..}] at @s if entity @s[nbt={SelectedItemSlot:6}] run function slide:track/reset
+execute as @a[tag=StartLine,scores={egg=1..}] at @s run kill @e[type=egg,limit=1,sort=nearest]
+execute as @a[tag=StartLine,scores={egg=1..}] at @s if entity @s[nbt={SelectedItemSlot:6}] run function slide:track/reset
 execute as @a[nbt={SelectedItemSlot:7},tag=StartLine] at @s if entity @e[tag=GbBRllm,distance=..10] run title @s actionbar ["",{"score":{"name":"@e[tag=GbBRllm,limit=1,sort=nearest]","objective":"GbBRlam"}},{"text": " Lap•s"}]
-execute as @a[scores={egg=1..}] at @s if entity @s[nbt={SelectedItemSlot:7}] run function slide:track/lap/add
-execute as @a[scores={egg=1..}] at @s if entity @s[nbt={SelectedItemSlot:8}] run function slide:track/start
-execute as @a[scores={egg=1..}] run scoreboard players set @s egg 0
+execute as @a[tag=StartLine,scores={egg=1..}] at @s if entity @s[nbt={SelectedItemSlot:7}] run function slide:track/lap/add
+execute as @a[tag=StartLine,scores={egg=1..}] at @s if entity @s[nbt={SelectedItemSlot:8}] run function slide:track/start
+execute as @a[tag=StartLine,scores={egg=1..}] run scoreboard players set @s egg 0
 
-execute as @a[scores={egg_drop=1..}] at @s run function slide:track/lap/remove
-execute as @a[scores={egg_drop=1..}] at @s run kill @e[type=item,limit=1,sort=nearest]
+execute as @a[tag=StartLine,scores={egg_drop=1..}] at @s run function slide:track/lap/remove
+execute as @a[tag=StartLine,scores={egg_drop=1..}] at @s run kill @e[type=item,limit=1,sort=nearest]
 execute as @a[scores={egg_drop=1..}] run scoreboard players set @s egg_drop 0
 
 execute as @e[tag=GbBR,scores={Time=-100..-1}] at @s unless entity @a[tag=InBoat,scores={Time=-100..-1}] run function slide:track/reset

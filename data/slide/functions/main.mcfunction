@@ -1,10 +1,12 @@
 scoreboard players enable @a Respawn
 scoreboard players enable @a Training
+scoreboard players enable @a[tag=!InTrack] EditMode
 
 execute as @a[scores={drop_door=1..}] run scoreboard players set @s Respawn 1
 execute as @a[scores={drop_door=1..}] run scoreboard players set @s drop_door 0
-execute as @a[scores={Respawn=1..}] at @s run function slide:respawn
-execute as @a[scores={Training=1..}] at @s run function slide:training
+execute as @a[scores={Respawn=1..}] at @s run function slide:trigger/respawn
+execute as @a[scores={Training=1..}] at @s run function slide:trigger/training
+execute as @a[tag=!InTrack,scores={EditMode=1..}] at @s run function slide:trigger/edit_mode
 
 execute as @a[nbt={RootVehicle:{Entity:{id:"minecraft:boat"}}},tag=!InBoat] at @s run tag @e[type=boat,limit=1,sort=nearest] remove Persistent
 tag @a[nbt={RootVehicle:{Entity:{id:"minecraft:boat"}}}] add InBoat
@@ -12,11 +14,15 @@ execute as @a[tag=InBoat,nbt=!{RootVehicle:{Entity:{id:"minecraft:boat"}}}] at @
 execute as @e[type=boat,tag=!Persistent] at @s unless entity @p[distance=..20] run kill @s
 
 
-effect give @a[gamemode=adventure] minecraft:weakness 1 250 true
-effect give @a minecraft:resistance 1 250 true
+effect give @a[gamemode=adventure] minecraft:weakness 99999 250 true
+effect give @a minecraft:resistance 99999 250 true
+effect give @a minecraft:saturation 99999 250 true
 execute as @a at @s if block ~ ~ ~ water run teleport @s 999.5 39.5 1024.5 90 0
 
 function slide:track/main
+function slide:editor/main
+execute as @a[tag=Editor] run function slide:editor/main_player
+execute as @a unless entity @s[scores={global=0..}] run function slide:join/new_player
 
 #training room
 execute positioned 1006 52 880 if entity @p[distance=..20,tag=!InBoat] unless entity @e[type=boat,distance=..5] run summon boat ~ ~ ~ {Type:"spruce",Tags:[Persistent,Training],Rotation:[180.0f,0.0f]}

@@ -17,6 +17,7 @@ execute if entity @s[tag=Tr4] run scoreboard players set @a[tag=InTrackTemp] Tra
 execute if entity @s[tag=Tr5] run scoreboard players set @a[tag=InTrackTemp] Track 5
 execute if entity @s[tag=Tr6] run scoreboard players set @a[tag=InTrackTemp] Track 6
 
+scoreboard players set @s[scores={Laps=..0}] Laps 1
 scoreboard players operation @a[tag=InTrackTemp] Laps = @s GbBRlam
 scoreboard players operation @a[tag=InTrackTemp] MaxLaps = @s GbBRlam
 scoreboard players set @a[tag=InTrackTemp] LapsIn 1
@@ -31,6 +32,7 @@ scoreboard players operation @a[tag=InTrackTemp] BestPersoTime = @s[scores={Trac
 scoreboard players set @s global 0
 
 tag @a[tag=InTrackTemp,scores={Laps=2..}] add Lap
+execute if entity @s[tag=GbBRllm] run tag @a[tag=InTrackTemp] add WCheck
 
 #Personnal Best
 execute as @a[tag=InTrackTemp] run scoreboard players operation @s Seconds = @s BestPersoTime
