@@ -20,8 +20,11 @@ execute as @a[tag=!StartLine,gamemode=adventure] run item replace entity @s hotb
 execute as @a[tag=!StartLine,gamemode=adventure] run item replace entity @s hotbar.7 with air
 execute as @a[tag=!StartLine,gamemode=adventure] run item replace entity @s hotbar.8 with air
 
-scoreboard players add @e[scores={Time=-100..}] Time 1
-scoreboard players add @e[scores={Time=-100..}] TimeL 1
+scoreboard players add @e[scores={Time=-100..},tag=GbBR] Time 1
+scoreboard players add @e[scores={Time=-100..},tag=GbBR] TimeL 1
+scoreboard players add @a[scores={Time=-100..}] Time 1
+scoreboard players add @a[scores={Time=-100..}] TimeL 1
+
 scoreboard players set @a[tag=!InBoat] Time -200
 tag @e[tag=msgAction,scores={TimeL=80}] remove msgAction
 
@@ -79,7 +82,7 @@ execute as @a[tag=InTrack] unless score @s BestTrackTime matches 1.. run tag @s 
 
 execute as @a[tag=StartLine,scores={egg=1..}] at @s run kill @e[type=egg,limit=1,sort=nearest]
 execute as @a[tag=StartLine,scores={egg=1..}] at @s if entity @s[nbt={SelectedItemSlot:6}] run function slide:track/reset
-execute as @a[nbt={SelectedItemSlot:7},tag=StartLine] at @s if entity @e[tag=GbBRllm,distance=..10] run title @s actionbar ["",{"score":{"name":"@e[tag=GbBRllm,limit=1,sort=nearest]","objective":"GbBRlam"}},{"text": " Lap•s"}]
+execute as @a[nbt={SelectedItemSlot:7},tag=StartLine] at @s if entity @e[tag=GbBRllm,distance=..10] run title @s actionbar ["",{"score":{"name":"@e[tag=GbBRllm,limit=1,sort=nearest]","objective":"Laps"}},{"text": " Lap•s"}]
 execute as @a[tag=StartLine,scores={egg=1..}] at @s if entity @s[nbt={SelectedItemSlot:7}] run function slide:track/lap/add
 execute as @a[tag=StartLine,scores={egg=1..}] at @s if entity @s[nbt={SelectedItemSlot:8}] run function slide:track/start
 execute as @a[tag=StartLine,scores={egg=1..}] run scoreboard players set @s egg 0

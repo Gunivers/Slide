@@ -74,12 +74,13 @@ scoreboard players set @a MoveZ 0
 scoreboard objectives add MoveZ2 dummy
 
 scoreboard objectives add Laps dummy
-execute as @e[tag=GbBRlam] run scoreboard players operation @s Laps = @s GbBRlam
+execute as @e[tag=GbBR] unless entity @s[scores={Laps=1..}] run scoreboard players operation @s Laps = @s GbBRlam
 scoreboard objectives add MaxLaps dummy
 scoreboard objectives add LapsIn dummy
 scoreboard objectives add BestTrackTime dummy
 scoreboard objectives add BestPersoTime dummy
 scoreboard objectives add Highscore dummy
+scoreboard objectives add playerId dummy
 
 scoreboard objectives add egg minecraft.used:minecraft.egg
 scoreboard objectives add drop_door minecraft.dropped:minecraft.oak_door
@@ -93,6 +94,8 @@ scoreboard objectives add BestTr3 dummy
 scoreboard objectives add BestTr4 dummy
 scoreboard objectives add BestTr5 dummy
 scoreboard objectives add BestTr6 dummy
+
+scoreboard objectives setdisplay list
 
 team add Holo
 team modify Holo color aqua
@@ -136,3 +139,5 @@ summon marker 1006 52 889 {Tags:["tp","Training"]}
 setblock 993 27 1019 minecraft:player_wall_head[facing=east]{SkullOwner:{Name:"Theaustudio",Id:"458b2654-52fc-2d47-2806-88b7ae49d127",Properties:{textures:[{Value:"eyJ0ZXh0dXJlcyI6eyJTS0lOIjp7InVybCI6Imh0dHA6Ly90ZXh0dXJlcy5taW5lY3JhZnQubmV0L3RleHR1cmUvNDU4YjI2NTQ1MmZjMmQ0NzI4MDY4OGI3YWU0OWQxMjcwZDE1MGIwZTE1ZWY2NjNiNzhkMDVmNTQ0ODZlOGIyZiJ9fX0="}]}}}
 setblock 993 26 1019 oak_wall_sign[facing=east]{Text1:'{"text":"*----*---*----*"}',Text2:'{"text":"Theaustudio"}',Text3:'{"text":"Datapack V1.5"}',Text4:'{"text":"*----*---*----*"}'}
 setblock 1007 29 1018 oak_wall_sign[facing=east]{Text1:'{"text":"Tu veux pas"}',Text2:'{"text":"m\'aider à projet"}',Text3:'{"text":"alpha plutot ?"}',Text4:'{"text":"- Laizo"}'}
+
+tag @a remove Editor

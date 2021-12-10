@@ -1,6 +1,9 @@
-scoreboard players set @s[tag=!GbBR] Track 0
+scoreboard players set @s Time -200
+scoreboard players set @s MoveX 0
+scoreboard players set @s MoveZ 0
+scoreboard players set @s Track 0
 
-tag @s[tag=!GbBR] remove InTrack
+tag @s remove InTrack
 tag @s remove Lap
 tag @s remove W1
 tag @s remove W2

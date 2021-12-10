@@ -22,7 +22,7 @@ execute as @a at @s if block ~ ~ ~ water run teleport @s 999.5 39.5 1024.5 90 0
 function slide:track/main
 function slide:editor/main
 execute as @a[tag=Editor] run function slide:editor/main_player
-execute as @a unless entity @s[scores={global=0..}] run function slide:join/new_player
+execute as @a[tag=!glib.id.set] run function slide:join/new_player
 
 #training room
 execute positioned 1006 52 880 if entity @p[distance=..20,tag=!InBoat] unless entity @e[type=boat,distance=..5] run summon boat ~ ~ ~ {Type:"spruce",Tags:[Persistent,Training],Rotation:[180.0f,0.0f]}

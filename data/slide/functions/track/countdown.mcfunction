@@ -1,9 +1,9 @@
 function slide:track/reset
 
-execute as @e[tag=GbBRrx+] at @s positioned ~-5.1 ~1 ~-5 run tag @a[dz=9,dy=5,dx=3,tag=!InTrack,tag=InBoat] add InTrackTemp
-execute as @e[tag=GbBRrx-] at @s positioned ~1.1 ~1 ~-5 run tag @a[dz=9,dy=5,dx=3,tag=!InTrack,tag=InBoat] add InTrackTemp
-execute as @e[tag=GbBRry+] at @s positioned ~-5 ~1 ~-5.1 run tag @a[dx=9,dy=5,dz=3,tag=!InTrack,tag=InBoat] add InTrackTemp
-execute as @e[tag=GbBRry-] at @s positioned ~-5 ~1 ~1.1 run tag @a[dx=9,dy=5,dz=3,tag=!InTrack,tag=InBoat] add InTrackTemp
+execute as @s[tag=GbBRrx+] at @s positioned ~-5.1 ~1 ~-5 run tag @a[dz=9,dy=5,dx=3,tag=!InTrack,tag=InBoat] add InTrackTemp
+execute as @s[tag=GbBRrx-] at @s positioned ~1.1 ~1 ~-5 run tag @a[dz=9,dy=5,dx=3,tag=!InTrack,tag=InBoat] add InTrackTemp
+execute as @s[tag=GbBRry+] at @s positioned ~-5 ~1 ~-5.1 run tag @a[dx=9,dy=5,dz=3,tag=!InTrack,tag=InBoat] add InTrackTemp
+execute as @s[tag=GbBRry-] at @s positioned ~-5 ~1 ~1.1 run tag @a[dx=9,dy=5,dz=3,tag=!InTrack,tag=InBoat] add InTrackTemp
 
 scoreboard players set @a[tag=InTrackTemp] Time -100
 scoreboard players set @a[tag=InTrackTemp] TimeL -100
@@ -17,9 +17,9 @@ execute if entity @s[tag=Tr4] run scoreboard players set @a[tag=InTrackTemp] Tra
 execute if entity @s[tag=Tr5] run scoreboard players set @a[tag=InTrackTemp] Track 5
 execute if entity @s[tag=Tr6] run scoreboard players set @a[tag=InTrackTemp] Track 6
 
-scoreboard players set @s[scores={Laps=..0}] Laps 1
-scoreboard players operation @a[tag=InTrackTemp] Laps = @s GbBRlam
-scoreboard players operation @a[tag=InTrackTemp] MaxLaps = @s GbBRlam
+execute unless entity @s[scores={Laps=1..}] run scoreboard players set @s Laps 1
+scoreboard players operation @a[tag=InTrackTemp] Laps = @s Laps
+scoreboard players operation @a[tag=InTrackTemp] MaxLaps = @s Laps
 scoreboard players set @a[tag=InTrackTemp] LapsIn 1
 #scoreboard players add @a[tag=InTrackTemp,distance=..10,scores={Laps=2..}] Laps 1 
 scoreboard players operation @a[tag=InTrackTemp] BestTrackTime = @s Highscore
@@ -43,6 +43,8 @@ execute as @a[tag=InTrackTemp] run scoreboard players operation @s Centiemes *= 
 execute as @a[tag=InTrackTemp] run scoreboard players operation @s Centiemes %= #100 global
 
 execute as @a[tag=InTrackTemp,scores={BestPersoTime=1..}] run tellraw @s {"text":"Your Personnal Best Is: ","color":"blue","extra":[{"color":"aqua","bold":true,"score":{"name":"@s","objective":"Seconds"}},{"text":"."},{"color":"aqua","bold":true,"score":{"name":"@s[scores={Centiemes=..9}]","objective":"global"}},{"color":"aqua","bold":true,"score":{"name":"@s","objective":"Centiemes"}},{"text":" seconds"}]}
+
+execute as @e[type=boat,distance=..10] at @s unless entity @p[distance=..0.5,tag=InBoat] run kill @s
 
 tag @a[tag=InTrackTemp] add InTrack
 tag @a remove InTrackTemp
