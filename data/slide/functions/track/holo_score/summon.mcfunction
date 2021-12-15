@@ -10,7 +10,7 @@ execute if entity @s[scores={Track=1}] run teleport @e[tag=currentHoloScore] 101
 execute if entity @s[scores={Track=2}] run teleport @e[tag=currentHoloScore] 967 37 1018
 execute if entity @s[scores={Track=3}] run teleport @e[tag=currentHoloScore] 969 40 1038
 execute if entity @s[scores={Track=4}] run teleport @e[tag=currentHoloScore] 992 45 1058
-execute if entity @s[scores={Track=5}] run teleport @e[tag=currentHoloScore] 1044 40 1028
+execute if entity @s[scores={Track=5}] run teleport @e[tag=currentHoloScore] 1044 43 1028
 execute if entity @s[scores={Track=6}] run teleport @e[tag=currentHoloScore] 1001 43 994
 
 data modify entity @e[tag=currentHoloScore,limit=1] CustomName set from block 987 26 1016 Text1

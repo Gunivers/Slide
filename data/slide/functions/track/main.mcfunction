@@ -101,3 +101,10 @@ execute unless entity @a[scores={Track=3},tag=InTrack] as @e[tag=GbBR,scores={Ti
 execute unless entity @a[scores={Track=4},tag=InTrack] as @e[tag=GbBR,scores={Time=-100..},tag=Tr4] at @s run function slide:track/finish/track
 execute unless entity @a[scores={Track=5},tag=InTrack] as @e[tag=GbBR,scores={Time=-100..},tag=Tr5] at @s run function slide:track/finish/track
 execute unless entity @a[scores={Track=6},tag=InTrack] as @e[tag=GbBR,scores={Time=-100..},tag=Tr6] at @s run function slide:track/finish/track
+
+execute as @a[scores={Track=1},tag=InTrack,tag=InBoat] unless score @s Time = @e[tag=GbBR,scores={Time=-100..},tag=Tr1,limit=1] Time at @s run function slide:boat_remove
+execute as @a[scores={Track=2},tag=InTrack,tag=InBoat] unless score @s Time = @e[tag=GbBR,scores={Time=-100..},tag=Tr2,limit=1] Time at @s run function slide:boat_remove
+execute as @a[scores={Track=3},tag=InTrack,tag=InBoat] unless score @s Time = @e[tag=GbBR,scores={Time=-100..},tag=Tr3,limit=1] Time at @s run function slide:boat_remove
+execute as @a[scores={Track=4},tag=InTrack,tag=InBoat] unless score @s Time = @e[tag=GbBR,scores={Time=-100..},tag=Tr4,limit=1] Time at @s run function slide:boat_remove
+execute as @a[scores={Track=5},tag=InTrack,tag=InBoat] unless score @s Time = @e[tag=GbBR,scores={Time=-100..},tag=Tr5,limit=1] Time at @s run function slide:boat_remove
+execute as @a[scores={Track=6},tag=InTrack,tag=InBoat] unless score @s Time = @e[tag=GbBR,scores={Time=-100..},tag=Tr6,limit=1] Time at @s run function slide:boat_remove
