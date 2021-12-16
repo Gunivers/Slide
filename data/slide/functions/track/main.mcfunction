@@ -1,8 +1,8 @@
 tag @a remove StartLine
-execute as @e[tag=GbBRrx+,scores={Time=-200}] at @s positioned ~-4.5 ~1 ~-5 run tag @a[tag=!InTrack,dz=9,dy=5,dx=3,gamemode=adventure] add StartLine
-execute as @e[tag=GbBRrx-,scores={Time=-200}] at @s positioned ~0.5 ~1 ~-5 run tag @a[tag=!InTrack,dz=9,dy=5,dx=3,gamemode=adventure] add StartLine
-execute as @e[tag=GbBRry+,scores={Time=-200}] at @s positioned ~-5 ~1 ~-4.5 run tag @a[tag=!InTrack,dx=9,dy=5,dz=3,gamemode=adventure] add StartLine
-execute as @e[tag=GbBRry-,scores={Time=-200}] at @s positioned ~-5 ~1 ~-0.5 run tag @a[tag=!InTrack,dx=9,dy=5,dz=3,gamemode=adventure] add StartLine
+execute as @e[tag=GbBR,tag=GbBRrx+,scores={Time=-200}] at @s positioned ~-4.5 ~1 ~-5 run tag @a[tag=!InTrack,dz=9,dy=5,dx=3,gamemode=adventure] add StartLine
+execute as @e[tag=GbBR,tag=GbBRrx-,scores={Time=-200}] at @s positioned ~0.5 ~1 ~-5 run tag @a[tag=!InTrack,dz=9,dy=5,dx=3,gamemode=adventure] add StartLine
+execute as @e[tag=GbBR,tag=GbBRry+,scores={Time=-200}] at @s positioned ~-5 ~1 ~-4.5 run tag @a[tag=!InTrack,dx=9,dy=5,dz=3,gamemode=adventure] add StartLine
+execute as @e[tag=GbBR,tag=GbBRry-,scores={Time=-200}] at @s positioned ~-5 ~1 ~-0.5 run tag @a[tag=!InTrack,dx=9,dy=5,dz=3,gamemode=adventure] add StartLine
 
 execute as @a[tag=StartLine,gamemode=adventure] run item replace entity @s hotbar.0 with spruce_boat
 execute as @a[tag=StartLine,gamemode=adventure] run item replace entity @s hotbar.6 with egg{HideFlags:63,display:{Name:'{"text":"Reset"}'}}
