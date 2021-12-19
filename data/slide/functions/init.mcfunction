@@ -28,7 +28,7 @@ gamerule mobGriefing true
 gamerule naturalRegeneration true
 gamerule randomTickSpeed 0
 gamerule reducedDebugInfo false
-gamerule sendCommandFeedback true
+gamerule sendCommandFeedback false
 gamerule showDeathMessages true
 gamerule spawnRadius 0
 gamerule spectatorsGenerateChunks false
@@ -128,6 +128,11 @@ data merge block 1001 39 1001 {Text1:'{"text":"*----*---*----*"}',Text2:'{"text"
 data merge block 1001 39 999 {Text1:'{"text":"*----*---*----*"}',Text2:'{"text":""}',Text3:'{"text":""}',Text4:'{"text":"*----*---*----*"}'}
 data merge block 1001 39 1000 {Text1:'{"text":"*----*---*----*","clickEvent":{"action":"run_command","value":"trigger EditMode"}}',Text2: '{"bold":true,"color":"white","text":"Edit"}',Text3: '{"bold":true,"color":"white","text":"the track"}',Text4:'{"text":"*----*---*----*"}'}
 
+data merge block 995 36 1005 {Text1:'{"text":"Gunivers\' Best"}',Text2:'{"text":"9.50 seconds"}',Text3:'{"text":"by Theaustudio"}',Text4:'{"text":"*----*---*----*"}'}
+data merge block 998 42 1053 {Text1:'{"text":"Gunivers\' Best"}',Text2:'{"text":"17.45 seconds"}',Text3:'{"text":"by Laizo"}',Text4:'{"text":"*----*---*----*"}'}
+data merge block 1021 41 1034 {Text1:'{"text":"Gunivers\' Best"}',Text2:'{"text":"52.90 seconds"}',Text3:'{"text":"by Laizo"}'}
+data merge block 972 35 1012 {Text1:'{"text":"Gunivers\' Best"}',Text2:'{"text":"18.85 seconds"}',Text3:'{"text":"by Laizo"}'}
+data merge block 976 40 1044 {Text1:'{"text":"Gunivers\' Best"}'}
 
 kill @e[tag=tp]
 summon marker 998 4 1129 {Tags:["tp","Tr4"]}

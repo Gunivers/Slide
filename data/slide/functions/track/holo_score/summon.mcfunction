@@ -1,7 +1,7 @@
 #execute if entity @s[tag=Tr4] run summon area_effect_cloud 992 46 1058 {CustomName: '["",{"text":"player : "},{"score":{"name":"@s","objective":"glib.id"}}]', Tags: ["currentHoloScore"], CustomNameVisible: 1, Age: -2147483648, Duration: -1, WaitTime: -2147483648}
 tag @s add currentExecutor
 #kill @e[type=area_effect_cloud,tag=currentHoloScore]
-setblock 987 26 1016 minecraft:acacia_sign{Text1:'{"text":"","color":"dark_aqua","extra":[{"selector":"@a[tag=currentExecutor,limit=1]"},{"text":" : "},{"color":"aqua","bold":true,"score":{"name":"@a[tag=currentExecutor,limit=1]","objective":"SecondsL"}},{"text":"."},{"color":"aqua","bold":true,"score":{"name":"@a[tag=currentExecutor,limit=1,scores={CentiemesL=..9}]","objective":"global"}},{"color":"aqua","bold":true,"score":{"name":"@a[tag=currentExecutor,limit=1]","objective":"CentiemesL"}},{"text":"s"}]}'}
+setblock 987 26 1016 minecraft:acacia_sign{Text1:'{"text":"","color":"white","extra":[{"selector":"@a[tag=currentExecutor,limit=1]"},{"text":" : "},{"color":"aqua","bold":true,"score":{"name":"@a[tag=currentExecutor,limit=1]","objective":"SecondsL"}},{"text":"."},{"color":"aqua","bold":true,"score":{"name":"@a[tag=currentExecutor,limit=1,scores={CentiemesL=..9}]","objective":"global"}},{"color":"aqua","bold":true,"score":{"name":"@a[tag=currentExecutor,limit=1]","objective":"CentiemesL"}},{"text":"s"}]}'}
 
 #execute if entity @s run summon area_effect_cloud 992 46 1058 {CustomName: '{"text":"hello world"}', Tags: ["holoScore", "currentHoloScore"], CustomNameVisible: 1, Age: -2147483648, Duration: -1, WaitTime: -2147483648}
 summon armor_stand ~ ~ ~ {CustomName: '{"text":"hello world"}', Tags: ["holoScore", "currentHoloScore"], CustomNameVisible: 1, NoGravity: 1b, Invisible: 1b}
