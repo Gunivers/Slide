@@ -74,7 +74,6 @@ scoreboard players set @a MoveZ 0
 scoreboard objectives add MoveZ2 dummy
 
 scoreboard objectives add Laps dummy
-execute as @e[tag=GbBR] unless entity @s[scores={Laps=1..}] run scoreboard players operation @s Laps = @s GbBRlam
 scoreboard objectives add MaxLaps dummy
 scoreboard objectives add LapsIn dummy
 scoreboard objectives add BestTrackTime dummy
@@ -146,3 +145,5 @@ setblock 993 26 1019 oak_wall_sign[facing=east]{Text1:'{"text":"*----*---*----*"
 setblock 1007 29 1018 oak_wall_sign[facing=east]{Text1:'{"text":"Tu veux pas"}',Text2:'{"text":"m\'aider à projet"}',Text3:'{"text":"alpha plutot ?"}',Text4:'{"text":"- Laizo"}'}
 
 tag @a remove Editor
+
+schedule function slide:post_init 5t

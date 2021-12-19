@@ -1,0 +1,2 @@
+execute as @e[tag=GbBR] unless entity @s[scores={Time=-200..}] run scoreboard players set @s Time -200
+execute as @e[tag=GbBR] unless entity @s[scores={Laps=1..}] run scoreboard players operation @s Laps = @s GbBRlam
